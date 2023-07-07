@@ -1,26 +1,30 @@
 import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
-import { Button, StyleSheet, Text, TextInput, View } from 'react-native';
+import { FlatList, StyleSheet, Text, View } from 'react-native';
+import Header from './components/header';
 
 export default function App() {
 
-  const [person, setPerson] = useState([
-    {name:'gaby',key:4},
-    {name:'Arson', key:5}
+  const [todos, setTodos] = useState([
+    {text:'text1', key:'1'},
+    {text:'text2', key:'2'},
+    {text:'text3', key:'3'},
   ])
-
 
   return (
     <View style={styles.container}>
-      <StatusBar style="auto" />
-
-     {person.map((item)=>{
-      return(
-        <View>
-          <Text style={styles.name} key={item.key}>{item.name}</Text>
+      <Header/>
+      <View style={styles.content}>
+        {/* todo form */}
+        <View style={styles.list}>
+          <FlatList 
+            data={todos}
+            renderItem={({item})=> (
+              <Text>{item.text}</Text>
+            )}
+          />
         </View>
-      )
-     })}
+      </View>
 
     </View>
   );
@@ -30,17 +34,15 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    paddingTop:40,
-    paddingHorizontal:20,
+    paddingTop:5,
+    paddingHorizontal:5,
     // alignItems: 'center',
     // justifyContent: 'center',
   },
-  name:{
-    color:'blue',
-    fontWeight:'bold',
-    backgroundColor:'yellow',
-    borderColor:'black',
-    borderWidth:1,
-    marginTop:5
+  content:{
+    padding:40,
+  },
+  list:{
+    // marginTop:20,
   }
 });

@@ -1,0 +1,29 @@
+1) <View></View>: Comme le div, mais on a besoin de view à chaque fois
+
+2) <Text></Text>: Paragraphe
+
+3) <ScrollView></ScrollView>: qui a la propriété de faire le scrollY
+
+4) <FlatList/>: qui a la propriété de map comme dans reactjs
+        exemple:<FlatList
+                    keyExtractor={(item)=>item.key}
+                    data={person}
+                    renderItem={({item})=>(
+                    <Text style={styles.name}>{item.name}</Text>
+                    )}
+                />
+
+6) <TouchableOpacity></TouchableOpacity>: c'est une animation quand on touche sur les items que se soit un bouton ou text ...
+        exemple:<TouchableOpacity onPress={()=>pressTouch(item.key)}>
+                    <Text style={styles.name}>{item.name}</Text>
+                </TouchableOpacity>
+
+                On poura filter les items comme ceci:
+                const pressTouch = (key) => {
+                    console.log(key);
+                    setPerson((clearPerson)=>{
+                    return clearPerson.filter(pers => pers.key != key)
+                    })
+                }
+                
+7) On utilise le système d'import de React pour importer les components
